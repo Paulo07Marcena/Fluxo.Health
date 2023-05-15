@@ -1,0 +1,183 @@
+@import url("https://fonts.googleapis.com/css2?family=Share+Tech&display=swap");
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Share Tech";
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100vh;
+}
+.contTitulo {
+  background-color: #ffffff;
+  width: 100%;
+  padding: 10px 40px;
+}
+
+.titulo {
+  font-weight: 500;
+}
+
+.titulo-2 {
+  border-radius: 5px;
+  height: 27px;
+  display: flex;
+  width: 290px;
+  font-weight: 500;
+}
+
+.container2 {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(236, 236, 236);
+}
+
+.contConteudo {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: rgb(236, 236, 236);
+  gap: 50px;
+}
+
+.container3 {
+  background-color: white;
+  width: 1000px;
+  height: 400px;
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 50px;
+  row-gap: 80px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 0 20px 20px 20px;
+}
+
+.sala01 {
+  background-color: #1b3959;
+  height: 50px;
+  width: 320px;
+  font-size: xx-large;
+  display: flex;
+  color: white;
+  align-items: center;
+  padding: 0 20px;
+  border-top-right-radius: 20px;
+}
+
+.linha {
+  width: 1000px;
+  padding-top: 30px;
+}
+
+.contTudo {
+  min-height: 400px;
+  display: flex;
+  gap: 35px;
+  padding-bottom: 50px;
+}
+
+.container4 {
+  display: flex;
+  flex-direction: column;
+  gap: 3%;
+}
+
+.area {
+  background-color: white;
+  width: 160px;
+  height: 31%;
+  border-radius: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.texto {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 200px;
+  padding-left: 30px;
+}
+
+.bolinha {
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+}
+
+.amarela {
+  background-color: #014792;
+}
+
+.vermelha {
+  background-color: #529ceb;
+}
+
+.azul {
+  background-color: #c1daf4;
+}
+
+.numero {
+  font-size: 50px;
+}
+
+span {
+  display: flex;
+  justify-content: center;
+}
+
+.poltrona {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.poltrona:hover > .divTemperatura {
+  opacity: 1;
+}
+
+.divTemperatura {
+  position: absolute;
+  top: -25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 70px;
+  height: 25px;
+  background-color: #014792;
+  border-radius: 10px;
+  transition: opacity 0.2s ease-out;
+  opacity: 0;
+  color: #ffffff;
+  font-family: "share tech";
+}
+
+.divTemperatura::after {
+  position: absolute;
+  content: "";
+  top: 20px;
+  width: 10px;
+  height: 10px;
+  background-color: #014792;
+  transform: rotateZ(45deg);
+}
+
+.graficos {
+  display: none;
+}

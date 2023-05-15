@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+
+    <!-- Logo na aba do navegador -->
+    <link rel="shortcut icon" href="./IMG/logo.png" type="image/x-icon" />
+
+    <!-- Link para o CSS da página -->
+    <link rel="stylesheet" href="./CSS/Login.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="blocks">
+        <img
+          src="./IMG/pagina_de_login.png"
+          alt="image"
+          class="img-principal"
+        />
+      </div>
+      <div class="blocks">
+        <div class="div-return">
+          <a href="./index.html">
+            <div class="circle">
+              <img src="./IMG/return.png" alt="Return-img" />
+            </div>
+          </a>
+        </div>
+        <div class="div-content">
+          <h1>LOGIN</h1>
+
+          <input
+            type="email"
+            id="ipt_email"
+            placeholder="Email"
+            class="email"
+          />
+          <div id="div_erro" style="color: red"></div>
+          <input
+            type="password"
+            id="ipt_senha"
+            placeholder="Senha"
+            class="password"
+          />
+          <div id="div_erro2" style="color: red"></div>
+
+          <a href="./Recuperar_senha.html">
+            <p class="forget">Esqueceu a senha?</p>
+          </a>
+          <button type="button" onclick="enviar()">Entrar</button>
+          <a href="./Contrate-nos.html">
+            <p>Não tem uma conta? <span> Junte-se a nós</span></p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+<script src="JavaScript/Login.js"></script>

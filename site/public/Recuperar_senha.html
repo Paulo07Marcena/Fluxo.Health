@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recuperar senha</title>
+
+    <!-- Logo na aba do navegador -->
+    <link rel="shortcut icon" href="./IMG/logo.png" type="image/x-icon" />
+
+    <!-- Link para o CSS da página -->
+    <link rel="stylesheet" href="./CSS/Recuperar_senha.css" />
+  </head>
+
+  <body>
+    <div class="modal" id="modal">
+      <div class="modal-box" id="modal_box">
+        <h1>Parabéns!</h1>
+        <div id="msg"></div>
+
+        <img src="./IMG/email.animation.gif" class="gif" />
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="blocks">
+        <img
+          src="./IMG/pagina_de_recuperar_senha.png"
+          alt="image"
+          class="img-principal"
+        />
+      </div>
+      <div class="blocks">
+        <div class="div-return">
+          <a href="./index.html">
+            <div class="circle">
+              <img src="./IMG/return.png" alt="Return-img" />
+            </div>
+          </a>
+        </div>
+        <div class="div-content">
+          <h1>RECUPERAR SENHA</h1>
+          <input id="ipt_email" placeholder="Email" class="email" />
+          <span id="span_email">Informe um e-mail válido!</span>
+          <button onclick="enviar()">Enviar link</button>
+          <div class="link">
+            <a href="./Login.html">
+              <p>Lembrou sua senha?</p>
+              <span> Faça o seu login</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+<script src="./JavaScript/recuperar_senha.js"></script>

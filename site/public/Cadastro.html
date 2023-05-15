@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cadastro</title>
+
+    <!-- Logo na aba do navegador -->
+    <link rel="shortcut icon" href="./IMG/logo.png" type="image/x-icon" />
+
+    <!-- Link para o CSS da página -->
+    <link rel="stylesheet" href="./CSS/Cadastro.css" />
+  </head>
+
+  <body>
+    <div class="modal" id="modal">
+      <div class="modal-box" id="modal_box">
+        <h1>Parabéns!</h1>
+        <div id="msg"></div>
+
+        <img src="./IMG/email.animation.gif" class="gif" />
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="blocks">
+        <img
+          src="./IMG/pagina_de_cadastro.jpg"
+          alt="image"
+          class="img-principal"
+        />
+      </div>
+      <div class="blocks">
+        <div class="div-return">
+          <a href="./index.html">
+            <div class="circle">
+              <img src="./IMG/return.png" alt="Return-img" />
+            </div>
+          </a>
+        </div>
+        <div class="div-content">
+          <h1>CADASTRO</h1>
+          <input
+            id="ipt_nome"
+            type="text"
+            placeholder="Nome"
+            class="name-user"
+          />
+          <span id="span_nome">Informe o seu nome!</span>
+          <br />
+          <input
+            id="ipt_hospital"
+            type="text"
+            placeholder="Nome do hospital"
+            class="name-user"
+          />
+          <span id="span_hospital">Informe o nome do seu hospital!</span>
+          <br />
+          <div class="row">
+            <input type="text" placeholder="Cep" class="cep" id="ipt_cep">
+            <input type="text" placeholder="Numero" class="numero" id="ipt_numero">
+          </div>
+          <span id="span_local">Informe corretamente a localização</span>
+          <br>
+          <input
+            id="ipt_telefone"
+            type="text"
+            placeholder="CNPJ"
+            class="cnpj"
+          />
+          <span id="span_telefone">Informe um telefone válido!</span>
+          <br />
+          <input id="ipt_email" type="text" placeholder="Email" class="email" />
+          <span id="span_email">Informe um e-mail válido!</span>
+          <br />
+          <input
+            id="ipt_senha"
+            type="password"
+            placeholder="Senha"
+            class="password"
+          />
+          <span id="span_senha"
+            >Sua senha deve ter pelo menos <br />
+            8 caracteres!</span
+          >
+
+          <div class="choice">
+            <input
+              type="radio"
+              name="plano"
+              id="Premium"
+              class="radio"
+              value="1"
+            />
+            <label for="Premium"> Premium</label><br />
+
+            <input
+              type="radio"
+              name="plano"
+              id="basico"
+              class="radio"
+              value="2"
+            />
+            <label for="basico"> Básico </label><br />
+          </div>
+
+          <button onclick="cadastrar()">Cadastrar</button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
+<script src="./JavaScript/Cadastro.js"></script>

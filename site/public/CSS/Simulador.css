@@ -1,0 +1,422 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Share+Tech&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #ffffff;
+}
+body::-webkit-scrollbar {
+  width: 0.5em;
+}
+body::-webkit-scrollbar-thumb {
+  background-color: #1e81c5;
+}
+
+/* ---| ESTILIZAÇÃO COMEÇO|--- */
+#section-simulator {
+  width: 100%;
+  height: auto;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.text-simulator {
+  width: 70%;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 30px;
+}
+
+.title-simulador {
+  padding: 15px;
+  width: auto;
+  height: 150px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.title-simulador h1 {
+  font-size: 3em;
+  font-family: "Montserrat", sans-serif;
+}
+
+.desc-simulador {
+  width: 700px;
+  height: 150px;
+}
+
+.desc-simulador p {
+  font-size: 20px;
+  font-family: "Montserrat", sans-serif;
+  text-align: center;
+}
+
+.underline {
+  background-color: #3172d8;
+  width: 70%;
+  height: 0.6em;
+  border-radius: 0.6em;
+  animation: animation 1.5s linear alternate;
+}
+
+@keyframes animation {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 70%;
+  }
+}
+
+/* -------  */
+
+.data-simulator {
+  background-color: #3172d8;
+  width: 100%;
+  height: 265px;
+
+  display: flex;
+  align-items: center;
+}
+
+.desc-cofen {
+  width: 60%;
+  height: 200px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.desc-cofen p {
+  width: 90%;
+  font-family: "Share Tech", sans-serif;
+  font-size: 30px;
+  text-align: center;
+  color: #ffffff;
+}
+
+.img-simulator {
+  background-image: url("../IMG/img-simulador.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 40%;
+  height: 100%;
+}
+
+/* ---| ESTILIZAÇÃO CARDS |--- */
+#section-cards {
+  width: 100%;
+  height: auto;
+  margin: 4em 0em 1em 0em;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container-card {
+  width: 100%;
+  height: 90%;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.card-main {
+  background-color: #3172d8;
+  width: 28em;
+  height: 500px;
+  border-radius: 20px;
+  box-shadow: -10px 5px 5px #00000052;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+}
+
+.title-card {
+  width: 90%;
+  height: 15%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.text-upper {
+  color: #ffffff;
+  font-family: "Share Tech", sans-serif;
+  font-size: 35px;
+}
+
+.text-low {
+  color: #ffffff;
+  font-family: "Share Tech", sans-serif;
+  font-size: 25px;
+}
+
+.topic-card {
+  width: 90%;
+  height: 80%;
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.topic {
+  width: 90%;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.center-topic {
+  display: flex;
+  align-items: center;
+  width: 90%;
+}
+
+.circle {
+  background-color: #ffffff;
+  min-width: 100px;
+  min-height: 100px;
+  border-radius: 50%;
+
+  position: relative;
+  left: 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rectangle {
+  background-color: #ffffff;
+  width: 85%;
+  height: 50px;
+  border-radius: 0 50px 50px 0;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rectangle p {
+  font-size: 20px;
+  font-family: "Share Tech", sans-serif;
+  margin: 0 auto;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.icon-circle {
+  width: auto;
+  height: 50px;
+  z-index: 1;
+}
+
+/* ONDINHAS */
+.waves {
+  width: 100%;
+  height: 10em;
+}
+
+.wave-two {
+  background-color: #e3f3fe;
+}
+
+/* ---| ESTILIZAÇÃO BOT |--- */
+#section-bot {
+  width: 100%;
+  height: auto;
+  background-color: #e3f3fe;
+
+  padding-bottom: 75px;
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container-bot {
+  width: 70%;
+  height: 80vh;
+  background-color: #041d2e;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  margin-top: 5em;
+  border-radius: 20px;
+}
+
+.robo-title {
+  background-color: #04131e;
+  height: 50px;
+  border-radius: 20px 20px 0 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.robo-title h2 {
+  color: #fff;
+  font-family: Share tech;
+}
+.online {
+  display: block;
+  width: 15px;
+  height: 15px;
+  background-color: #00ff0a;
+  border-radius: 50%;
+  margin-left: 10px;
+}
+.content {
+  flex: 1 0 80%;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  overflow-y: scroll;
+}
+.content::-webkit-scrollbar {
+  width: 0.5em;
+  background-color: #041d2e;
+}
+.content::-webkit-scrollbar-thumb {
+  background-color: #04131e;
+  border-radius: 1em 1em 1em 1em;
+}
+.chat {
+  display: flex;
+  align-items: center;
+  margin: 25px 0 0 0;
+}
+.div-img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: #1b3445;
+  margin: 0 10px 0 20px;
+}
+.div-img img {
+  width: auto;
+  height: 80px;
+}
+.msg {
+  background-color: #1b3445;
+  color: #fff;
+  font-family: share tech;
+  padding: 10px;
+  height: auto;
+  width: auto;
+  max-width: 45%;
+  border-radius: 20px 20px 20px 0;
+  display: flex;
+}
+.a-robo{
+  color: #fff;
+  font-family: share tech;
+}
+.chat-robot {
+  display: flex;
+}
+.chat-client {
+  justify-content: end;
+}
+.msg-client {
+  border-radius: 20px 20px 0 20px;
+  display: flex;
+  height: auto;
+  margin-left: 15px;
+}
+
+/* Animação de loading fala do cleinte */
+.cube {
+  width: 10px;
+  height: 10px;
+  background-color: #1e81c5;
+  margin: 2px;
+  animation: loading 0.5s infinite alternate;
+  border-radius: 15px;
+}
+.cube:nth-child(1) {
+  animation-delay: -0.4s;
+}
+.cube:nth-child(2) {
+  animation-delay: -0.2s;
+}
+@keyframes loading {
+  0% {
+    height: 10px;
+  }
+  50%,
+  100% {
+    height: 15px;
+  }
+}
+
+/* Parte de enviar mensagem para o robo: */
+.send-mensage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+}
+.send-mensage input {
+  width: 80%;
+  height: 35px;
+  background-color: #1b3445;
+  border-style: none;
+  border-radius: 10px;
+  font-family: share tech;
+  padding-left: 10px;
+  outline: none;
+  color: #fff;
+}
+.send-mensage button {
+  background-color: #1e81c5;
+  color: #fff;
+  border-radius: 10px;
+  width: 20%;
+  height: 35px;
+  border: none;
+  margin-left: 10px;
+  font-family: share tech;
+  cursor: pointer;
+}
+.porcentagem {
+  font-size: 50px;
+}
+
+.footer {
+  height: auto;
+}

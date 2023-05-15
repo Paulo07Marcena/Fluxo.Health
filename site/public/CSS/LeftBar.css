@@ -1,0 +1,167 @@
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech&display=swap');
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Share Tech';
+}
+
+.contLeftBar{
+    max-width: 300px;
+    min-width: 300px;
+    transition: min-width .3s linear, max-width .3s linear;
+}
+
+.leftBar{
+    transition: width .3s linear;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    width: 300px;
+    height: 100vh;
+    justify-content: space-evenly;
+    align-items: center;
+    background: #1B3959;
+}
+
+.hamburger{
+    transition: all .3s linear;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: transparent;
+    transform: rotateX(180deg) rotateY(180deg)
+}
+.hamburger:hover {
+    transform: rotateX(180deg) rotateY(180deg) scale(1.2,1.2);
+}
+
+
+.userCont{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+.userIcon{
+    transition: all .3s linear;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: #1B3959;
+    padding: 5px;
+    border: 6px solid #3781DB;
+}
+.userImage {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.profileButton {
+    transition: all .3s linear;
+    position: absolute;
+    width: 120px;
+    padding: 5px;
+    bottom: -10px;
+    border-radius: 10px;
+    color: #FFFFFF;
+    font-size: 25px;
+    border: none;
+    outline: none;
+    background: #3781DB;
+}
+
+.userIcon:hover {
+    transform: scale(1.02,1.02);
+    border-color: #295c9b;
+}
+.userIcon:hover > .profileButton {
+    background: #295c9b;
+}
+
+.userName{
+    transition: all .3s linear;
+    width: 100%;
+    height: 40px;
+    font-size: 35px;
+    text-align: center;
+    color: #FFFFFF;
+    overflow: hidden;
+}
+
+.optionsCont{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+}
+.option{
+    transition: all .3s linear;
+    display: flex;
+    width: 100%;
+    height: 80px;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    text-decoration: none;
+}
+.option:hover{
+    background: #154577;
+}
+.optionIcon{
+    width: 40px;
+    height: 40px;
+}
+.optionName{
+    transition: all .3s linear;
+    display: block;
+    width: 120px;
+    color: white;
+    font-size: 25px;
+    overflow: hidden;
+}
+.selected{
+    background: #1A5594;
+}
+
+#closeImage{
+    width: 110px;
+    height: 110px;
+}
+#closeImage > button{
+    opacity: 0;
+    bottom: -20px;
+    transform: scale(0.7,0.7);
+}
+#closeImage ~ p{
+    opacity: 0;
+    width: 0px;
+}
+#closeOption{
+    gap: 0px;
+}
+#closeOption > p{
+    opacity: 0;
+    width: 0px;
+}
+#closeBar{
+    min-width: 140px;
+    max-width: 140px;
+}
+#closeBar > div{
+    width: 140px;
+}
+#closeHamburger{
+    transform: rotateX(0deg) rotateY(0deg)
+}
+#closeHamburger:hover{
+    transform: rotateX(0deg) rotateY(0deg) scale(1.2,1.2)
+}

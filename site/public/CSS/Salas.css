@@ -1,0 +1,235 @@
+@import url("https://fonts.googleapis.com/css2?family=Share+Tech&display=swap");
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Share Tech";
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+}
+
+.salas {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  background: #efefef;
+  flex-direction: column;
+}
+.pageTitle {
+  display: flex;
+  width: 100%;
+  height: 50px;
+  background: #ffffff;
+  align-items: center;
+  padding: 0px 80px;
+}
+.pageTitle > p {
+  font-size: 40px;
+}
+
+.content {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  gap: 30px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 50px;
+  gap: 80px;
+}
+
+.contSubtitle {
+  display: flex;
+  align-items: center;
+  width: min-content;
+  height: 60px;
+  background: #ffffff;
+  border-radius: 20px 0 20px 0;
+  padding: 0px 20px;
+}
+
+.subtitleText {
+  white-space: nowrap;
+  font-size: 30px;
+}
+
+.roomsArea {
+  display: flex;
+  width: auto;
+  height: 80%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.assistentArea {
+  display: flex;
+  width: 90%;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.searchCont {
+  display: flex;
+}
+.searchInput {
+  border: 2px solid #c1c1c1;
+  border-right: none;
+  border-radius: 15px 0 0 15px;
+  width: 350px;
+  height: 50px;
+  padding: 10px;
+  font-size: 30px;
+}
+.searchInput::placeholder {
+  font-size: 30px;
+  color: #c1c1c1;
+}
+.searchButton {
+  border: 2px solid #c1c1c1;
+  border-left: none;
+  border-radius: 0 15px 15px 0;
+  background-color: #1b3959;
+  width: 80px;
+  color: white;
+}
+
+.configArea {
+  display: flex;
+  gap: 20px;
+}
+
+.img-lupa {
+  height: auto;
+  width: 25%;
+}
+
+.configButton {
+  width: 70px;
+  height: 50px;
+  border: none;
+  border-radius: 15px;
+  background: #1b3959;
+  color: #ffffff;
+  font-size: 30px;
+}
+.secondary {
+  background: #5e97d3;
+}
+
+#rooms {
+  display: flex;
+  width: 90%;
+  min-height: 500px;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+.capsuleRoom {
+  display: flex;
+  min-width: 100%;
+  min-height: 500px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 10px;
+  gap: 10px 10px;
+}
+.room {
+  display: flex;
+  flex-basis: 32%;
+  min-width: 200px;
+  height: 240px;
+  padding: 20px;
+  border-radius: 20px;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+}
+
+.roomCapacityArea {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.roomCapacity {
+  background: #ae1515;
+  color: #ffffff;
+  font-size: 30px;
+  width: 180px;
+  text-align: center;
+  border-radius: 10px;
+  padding: 5px;
+}
+.roomFull {
+  background-color: #ae1515;
+}
+.roomEmpty {
+  background-color: #0072dc;
+}
+.roomCapacityArea > p {
+  font-size: 25px;
+}
+.roomTitle {
+  font-size: 40px;
+}
+
+#dots {
+  display: flex;
+  width: 100%;
+  height: 30px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.dot {
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+  background-color: #a5a5a5;
+  border: none;
+}
+.dotSelect {
+  background-color: #0072dc;
+}
+
+.contGraphic {
+  display: flex;
+  width: 90%;
+  min-height: 600px;
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 30px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+}
+
+.titleGraphic {
+  width: 100%;
+  font-size: 40px;
+}
+
+.link-sala{
+  text-decoration: none;
+}
+
+a:visited, a:active, a:link, a:hover{
+  color: white;
+}
+
+#capacityRoomGraphic {
+  max-width: 100%;
+}

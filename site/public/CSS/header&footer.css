@@ -1,0 +1,155 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body::-webkit-scrollbar {
+  width: 0.5em;
+}
+body::-webkit-scrollbar-thumb {
+  background-color: #1e81c5;
+}
+
+/* Estilização da header home */
+.header-home {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 3em;
+  width: 100%;
+}
+
+.header-home ul {
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  list-style: none;
+}
+
+.header-home ul li a {
+  text-decoration: none;
+  font-family: montserrat;
+  color: #fff;
+  font-size: 15px;
+}
+
+.header-home ul li img {
+  width: auto;
+  height: 2em;
+}
+
+.header-background{
+  background-color: #ffffff;
+  box-shadow: 0 5px 10px #00000032;
+  z-index: 100;
+}
+
+.header-background > ul > li >a{
+  color: #000000;
+}
+
+.user {
+  transform-style: preserve-3d;
+  transition: all 0.5s ease;
+}
+
+.user:hover {
+  transform: rotateY(180deg);
+}
+
+/* Estilização da header  */
+.header {
+  top: 0;
+  position: fixed;
+  z-index: 10;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.24);
+  height: 3em;
+  width: 100%;
+}
+
+.header img {
+  width: auto;
+  height: 2em;
+  margin: 0 1em 0 1em;
+}
+
+.header ul {
+  width: 60%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  list-style: none;
+}
+
+.header ul li a {
+  text-decoration: none;
+  font-family: "Montserrat";
+  color: #000000;
+  font-size: 15px;
+  position: relative;
+}
+
+.header .a::after {
+  content: "";
+  width: 0%;
+  height: 2px;
+  background-color: #3172d8;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  transition: 0.5s ease-in-out;
+}
+
+.a:hover::after {
+  width: 100%;
+  color: #3172d8;
+}
+
+/* Estilização do footer */
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 5em;
+  width: 100%;
+  background-color: #041d2e;
+  color: #fff;
+  font-family: Share tech;
+}
+
+.footer img {
+  width: auto;
+  height: 2em;
+  margin: 0 1em 0 1em;
+  transition: 0.5s ease-in-out;
+}
+
+.footer div {
+  margin-left: 1em;
+}
+
+.footer ul {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  list-style: none;
+  margin-right: 1em;
+}
+
+.footer ul li a {
+  text-decoration: none;
+  font-family: Share tech;
+  color: #000000;
+  font-size: 15px;
+  position: relative;
+}
+
+.footer img:hover {
+  height: 3em;
+}

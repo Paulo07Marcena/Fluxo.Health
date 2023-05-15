@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Logo na aba do navegador -->
+    <link rel="shortcut icon" href="./IMG/logo.png" type="image/x-icon" />
+
+    <link rel="stylesheet" href="./CSS/header&footer.css" />
+
+    <link rel="stylesheet" href="CSS/Contrate-nos.css" />
+    <title>Contrate-nos</title>
+  </head>
+
+  <body>
+    <div class="modal" id="modal">
+      <div class="modal-box" id="modal_box">
+        <div id="msg"></div>
+      </div>
+    </div>
+
+    <div class="container">
+      <header class="header">
+        <img src="./Img/logo.png" alt="logo-img" />
+        <ul>
+          <li><a class="a" href="./index.html">INÍCIO </a></li>
+          <li><a class="a" href="./index.html">SOBRE-NÓS</a></li>
+          <li><a class="a" href="./Contrate-nos.html">CONTRATE-NOS</a></li>
+          <li><a class="a" href="./Simulador.html">SIMULADOR</a></li>
+          <li><a class="a" href="./index.html">FALE CONOSCO</a></li>
+          <li>
+            <a href="./Login.html"
+              ><img class="user" src="./IMG/user-black.png" alt="Login "
+            /></a>
+          </li>
+        </ul>
+      </header>
+
+      <section>
+        <div class="title-content">
+          <div class="title-box">
+            <h1>Contrate-nos</h1>
+            <div class="underline"></div>
+          </div>
+        </div>
+        <div class="cards-content">
+          <div class="cards-box">
+            <div class="card card1">
+              <div class="card-title">
+                <p class="p-title">Básico</p>
+                <button class="p-title-button" onclick="info('basico')">
+                  <img src="./IMG/info.png" alt="" class="img-info" />
+                </button>
+              </div>
+              <div>
+                <div class="div-price">
+                  <div>
+                    <p class="Simbol">R$</p>
+                  </div>
+                  <div>
+                    <p class="price">10000</p>
+                  </div>
+                </div>
+                <div class="month">
+                  <p>/Mês</p>
+                </div>
+              </div>
+
+              <a href="./Cadastro.html" class="button-a">
+                <button class="button">Contratar</button>
+              </a>
+            </div>
+
+            <div class="card card2">
+              <div class="card-title">
+                <p class="p-title">Premium</p>
+
+                <button class="p-title-button" onclick="info('premium')">
+                  <img src="./IMG/info.png" alt="" class="img-info" />
+                </button>
+              </div>
+              <div>
+                <div class="div-price">
+                  <div>
+                    <p class="Simbol">R$</p>
+                  </div>
+                  <div>
+                    <p class="price">12000</p>
+                  </div>
+                </div>
+                <div class="month">
+                  <p>/Mês</p>
+                </div>
+              </div>
+
+              <a href="./Cadastro.html" class="button-a">
+                <button class="button">Contratar</button>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <div>
+          <h3>FLUXO HEALTH</h3>
+          <p>Copyright © 2023 All rights reserved</p>
+        </div>
+        <div>
+          <ul>
+            <li>
+              <a href="https://www.instagram.com/fluxohealth/"><img src="./IMG/Instagram_icon.png.webp" alt="" /></a>
+            </li>
+            <li>
+              <a href="https://www.linkedin.com/in/fluxo-health-778317271/"><img src="./IMG/linkedin.png" alt="" /></a>
+            </li>
+            <li>
+              <a href="https://www.facebook.com/profile.php?id=100091587386215"><img src="./img/facebook.png" alt="" /></a>
+            </li>
+          </ul>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
+
+<script src="./JavaScript/contrate-nos.js"></script>
