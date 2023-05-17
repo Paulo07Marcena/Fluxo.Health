@@ -22,7 +22,7 @@ var mySqlConfig = {
     host: "localhost",
     database: "fluxoHealth",
     user: "root",
-    password: "SUA_SENHA",
+    password: "@eduufreire",
 };
 
 function executar(instrucao) {
