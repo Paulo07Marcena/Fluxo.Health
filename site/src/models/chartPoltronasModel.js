@@ -42,6 +42,48 @@ function cadeirasEmUso(idSala) {
 
 }
 
+
+function lotacaoDiariaSala(idSala){
+
+    
+    let data = new Date()
+    let anoAtual = data.getFullYear()
+    let mesAtual = String(data.getMonth() + 1).padStart(2, '0')
+
+    let diaAtual = String(data.getDate()).padStart(2, '0')
+    let ultimoDia = String(data.getDate() - 6).padStart(2, '0')
+
+    /*
+    instrucaoSql =
+    `select date_format(dataHora, '%d/%m') as dataDiaria, count(dataHora) as contagem from Registro
+	    join Sensor on fkSensor = idSensor
+        join Sala on fkSala = idSala
+            where year(dataHora) = 2023
+              and month(dataHora) = 04
+              and day(dataHora) between 04 and 17 
+              and idSala = ${idSala}
+		    group by dataDiaria
+            order by dataDiaria asc limit 6;
+    `;
+    */
+
+    
+    instrucaoSql =
+    `select date_format(dataHora, '%d/%m') as dataDiaria, count(dataHora) as contagem from Registro
+	    join Sensor on fkSensor = idSensor
+        join Sala on fkSala = idSala
+            where year(dataHora) = ${anoAtual}
+              and month(dataHora) = ${mesAtual}
+              and day(dataHora) between ${ultimoDia} and ${diaAtual} 
+              and idSala = ${idSala}
+		    group by dataDiaria
+            order by dataDiaria asc limit 6;
+    `;
+
+    return database.executar(instrucaoSql)
+
+}
+
 /*
 function getLotacaoSala(idSala) {
 
@@ -106,7 +148,8 @@ function buscarMedidasEmTempoReal(idAquario) {
 
 module.exports = {
     totalCadeiraNaSala,
-    cadeirasEmUso
+    cadeirasEmUso,
+    lotacaoDiariaSala
     //getLotacaoSala
     //buscarMedidasEmTempoReal  
 }
