@@ -2,27 +2,32 @@ let graficoDonuts = document.getElementById('grafico_donuts')
 let graficoDeLinha = document.getElementById("grafico_de_linha");
 
 // Colocar dados ao carregar
-let carregarDonuts = [10, 5]
+let carregarDonuts = [2, 1]
 let carregarLinha = [{
-    dataDiaria: '10/01',
+    dataDiaria: '01/01',
     contagem: 0
 }]
 
 window.load = plotarGraficoLotacao(carregarDonuts)
 window.load = plotarGraficoLinha(carregarLinha)
 
+let dadosLotacao = []
+let poltronas
+
+
 // Atualizar gráficos
-setInterval(()=>{
-
-    console.log('atualizou')
-    buscarTotalCadeiras(1)
+setInterval(() => {
     buscarCadeirasEmUso(1)
+    buscarTotalCadeiras(1)
 
-    setInterval(()=>{
-        buscarLotacaoDiaria(1)
-        plotarGraficoLotacao(dadosLotacao)
-    }, 10000)
-    
+    buscarLotacaoDiaria(1)
+
+    buscarCadeiras(1)
+
+    containerPoltrona.innerHTML = ''
+    listarCadeiras(poltronas)
+
+    plotarGraficoLotacao(dadosLotacao) 
     
 
 }, 10000)
@@ -31,7 +36,6 @@ setInterval(()=>{
 // -=-========================================================||
 
 
-let dadosLotacao = []
 function buscarTotalCadeiras(idSala) {
     fetch(`/chartPoltrona/totalCadeiras/${idSala}`, { cache: 'no-store' }).then(function (response) {
 
@@ -40,7 +44,7 @@ function buscarTotalCadeiras(idSala) {
                 console.log(`Dados recebidos - Total: ${JSON.stringify(resposta)}`);
                 resposta.reverse();
 
-                dadosLotacao.push(resposta[0].qtdeTotalSala)
+                dadosLotacao[0] = resposta[0].qtdeTotalSala
             });
 
         } else {
@@ -63,7 +67,7 @@ function buscarCadeirasEmUso(idSala) {
                 console.log(`Dados recebidos - Uso: ${JSON.stringify(resposta)}`);
                 resposta.reverse();
 
-                dadosLotacao.push(resposta[0].qtde)
+                dadosLotacao[1] = resposta[0].qtde
             });
 
         } else {
@@ -77,16 +81,10 @@ function buscarCadeirasEmUso(idSala) {
 
 }
 
-/*
-setInterval(() => {
-    if (dadosLotacao.length > 0) {
-    }
-}, 10000)
-*/
-
-
 // Contruindo o gráfico de LOTÇÃO
 function plotarGraficoLotacao(dadosSala) {
+
+    console.log(dadosSala)
 
     let totalCadeiras = dadosSala[0]
     let cadeirasOcupadas = dadosSala[1]
@@ -94,7 +92,7 @@ function plotarGraficoLotacao(dadosSala) {
     let porcCadeirasOcupadas = (cadeirasOcupadas * 100) / totalCadeiras
 
     let dados = {
-        datasets: [
+        datasets: [     
             {
                 data: [porcCadeirasOcupadas, porcCadeirasVazias],
                 backgroundColor: ["#011526", "#188CED"],
@@ -114,6 +112,7 @@ function plotarGraficoLotacao(dadosSala) {
         options: opcoes,
     });
 
+    meuDonutChart.update()
 }
 
 
@@ -191,6 +190,7 @@ function plotarGraficoLinha(dados) {
             )
         }
 
+
     }
 
 
@@ -232,7 +232,92 @@ function plotarGraficoLinha(dados) {
         },
     });
 
+    chart.update()
 
 }
 
 
+// -=================================================\\
+
+window.load = buscarCadeiras(1)
+let containerPoltrona = document.getElementById('poltronaMaluca')
+
+function buscarCadeiras(idSala) {
+
+    fetch(`/chartPoltrona/buscarCadeiras/${idSala}`, { cache: 'no-store' }).then(function (response) {
+        if (response.ok) {
+            response.json().then(function (resposta) {
+
+                console.log(`Dados recebidos ---- : ${JSON.stringify(resposta)}`);
+                poltronas = resposta
+
+            });
+        } else {
+            console.error('Nenhum dado encontrado ou erro na API - Vazias');
+        }
+    })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        });
+
+}
+
+let contagem
+function listarCadeiras(a) {
+
+ contagem = dadosLotacao[0]
+
+    for (var i = 0; i < contagem; i++) {
+
+        if (i < a.length) {
+
+            containerPoltrona.innerHTML +=
+                `
+                <div class="poltrona">
+                    <div class="divTemperatura">
+                        <p>${a[i].valor}°c</p>
+                    </div>
+    
+                    <img src="../IMG/poltronaOcupada.png"/>
+    
+                    <span>${a[i].nome}</span>
+                </div>
+                `
+
+        } else {
+
+            containerPoltrona.innerHTML +=
+                `
+                <div class="poltrona">
+                    <div class="divTemperatura">
+                        <p>0.0°c</p>
+                    </div>
+    
+                    <img src="../IMG/poltronaLivre.png"/>
+    
+                    <span>Vazia</span>
+                </div>
+                `
+        }
+
+    }
+
+    var teste = 8 - contagem
+    for(var i = 0; i < teste; i++){
+        console.log(teste)
+       containerPoltrona.innerHTML +=
+       `
+       <div class="poltrona">
+           <img src="../IMG/poltronaNull.png" />
+           <span>Poltrona 02</span>
+       </div>
+       `
+   }
+
+
+
+
+}
+
+
+// -=================================================\\

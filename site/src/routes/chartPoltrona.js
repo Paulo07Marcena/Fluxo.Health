@@ -16,6 +16,10 @@ router.get("/lotacaoDiaria/:idSala", function(req, res) {
     chartController.lotacaoDiaria(req, res);
 });
 
+router.get("/buscarCadeiras/:idSala", function(req, res) {
+    chartController.buscarCadeiras(req, res);
+});
+
 
 // router.get("/tempo-real/:idAquario", function (req, res) {
 //     medidaController.buscarMedidasEmTempoReal(req, res);

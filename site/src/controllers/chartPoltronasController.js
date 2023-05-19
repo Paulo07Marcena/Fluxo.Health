@@ -75,6 +75,35 @@ function lotacaoDiaria(req, res){
 }
 
 
+
+function buscarCadeiras(req, res){
+
+    var idSala = req.params.idSala;
+    chartModel.buscarCadeiras(idSala).then(function (resultado) {
+
+        if (JSON.stringify(resultado).length > 0) {
+
+            res.status(200).json(resultado);
+
+        } else {
+
+            res.status(204).send("Nenhum resultado encontrado!")
+
+        }
+
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Cadeiras - Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+
+    });
+
+}
+
+
+
+
+
 /*
 function pegarLotacao(req, res) {
     var id = req.params.idSala;
@@ -128,7 +157,8 @@ function buscarMedidasEmTempoReal(req, res) {
 module.exports = {
     totalCadeiras,
     cadeirasEmUso,
-    lotacaoDiaria
+    lotacaoDiaria,
+    buscarCadeiras
     // porcentagemLotacao
     // buscarMedidasEmTempoReal
 }
