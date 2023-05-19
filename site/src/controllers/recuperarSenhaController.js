@@ -6,8 +6,8 @@ const recuperarSenha = require("../models/recuperarSenhaModel")
 const transporter = nodemailer.createTransport({
     service: "outlook",
     auth: {
-        user: "andreylrodrigues@hotmail.com",
-        pass: "andrey050405",
+        user: "",
+        pass: "",
     },
 });
 
@@ -24,7 +24,7 @@ async function enviarEmail(req, res){
     else{
         const chamadoRecente = await recuperarSenha.procurarPermissao(hospital[0].idHosp)
         if(chamadoRecente.length > 0){
-            res.status(400).json({msg: "Solicitação para recuperar senha feita a menos de 5 minutos"})
+            res.status(403).json({msg: "Solicitação para recuperar senha feita a menos de 5 minutos"})
         }
         else{
             recuperarSenha.liberarTroca(hospital[0].idHosp).then(() => {
