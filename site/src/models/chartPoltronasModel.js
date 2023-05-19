@@ -6,7 +6,8 @@ function totalCadeiraNaSala(idSala) {
     instrucaoSql =
     `select count(idPoltrona) as qtdeTotalSala from Poltrona
 	    join Sala on fkSala = idSala
-        where idSala = ${idSala};
+        join Hospital on fkHospital = idHospital
+        where idSala = ${idSala} and idHospital = 1;
     `;
 
     return database.executar(instrucaoSql)
@@ -35,7 +36,10 @@ function cadeirasEmUso(idSala) {
     `select count(fkSensor) as qtde from Registro
 	    join Sensor on fkSensor = idSensor
         join Sala on fkSala = idSala
-        where idSala = ${idSala} and valor > 0 and dataHora between '${dataPassada}' and '${dataFormatada}';
+        join Hospital on fkHospital = idHospital
+        where idSala = ${idSala} 
+        and idHospital = 1
+        and valor > 0 and dataHora between '${dataPassada}' and '${dataFormatada}';
     `;
 
     return database.executar(instrucaoSql)
@@ -72,15 +76,64 @@ function lotacaoDiariaSala(idSala){
     `select date_format(dataHora, '%d/%m') as dataDiaria, count(dataHora) as contagem from Registro
 	    join Sensor on fkSensor = idSensor
         join Sala on fkSala = idSala
+        join Hospital on fkHospital = idHospital
             where year(dataHora) = ${anoAtual}
               and month(dataHora) = ${mesAtual}
               and day(dataHora) between ${ultimoDia} and ${diaAtual} 
-              and idSala = ${idSala}
+              and idSala = ${idSala} and idHospital = 1
 		    group by dataDiaria
             order by dataDiaria asc limit 6;
     `;
 
     return database.executar(instrucaoSql)
+
+}
+
+
+
+function buscarCadeiras(idSala){
+
+    let dataAtual = new Date()
+    let dia = dataAtual.getDate().toString().padStart(2, '0')
+    let mes = String(dataAtual.getMonth() + 1).padStart(2, '0')
+    let ano = dataAtual.getFullYear()
+
+    let hora = dataAtual.getHours()
+    let minutoAtual = String(dataAtual.getMinutes()).padStart(2, '0')
+    let minutoAntes = String(dataAtual.getMinutes() - 5).padStart(2, '0')
+    let miles = dataAtual.getMilliseconds()
+
+    let dataFormatada = `${ano}-${mes}-${dia} ${hora}:${minutoAtual}:${miles}`
+    let dataPassada = `${ano}-${mes}-${dia} ${hora}:${minutoAntes}:${miles}`
+
+
+    instrucaoSql = 
+    /*
+    `select Poltrona.idPoltrona, Poltrona.nome ,Registro.valor from Poltrona 
+	join Sensor on fkPoltrona = idPoltrona
+    join Registro on fkSensor = idSensor
+	join Sala on Poltrona.fkSala = Sala.idSala
+    join Hospital on fkHospital = idHospital
+	where Poltrona.fkSala = 1 
+		  and idHospital = 1
+		  and dataHora between '2023-05-18 21:45:00' and '2023-05-18 21:50:00'
+          order by idPoltrona;`*/
+
+
+    instrucaoSql =
+    `select Poltrona.idPoltrona, Poltrona.nome ,Registro.valor from Poltrona 
+	    join Sensor on fkPoltrona = idPoltrona
+        join Registro on fkSensor = idSensor
+	    join Sala on Poltrona.fkSala = Sala.idSala
+        join Hospital on fkHospital = idHospital
+	    where Poltrona.fkSala = ${idSala} 
+		  and idHospital = 1
+		  and dataHora between '${dataPassada}' and '${dataFormatada}'
+            order by idPoltrona;
+    `;
+
+    return database.executar(instrucaoSql)
+
 
 }
 
@@ -149,7 +202,8 @@ function buscarMedidasEmTempoReal(idAquario) {
 module.exports = {
     totalCadeiraNaSala,
     cadeirasEmUso,
-    lotacaoDiariaSala
+    lotacaoDiariaSala,
+    buscarCadeiras
     //getLotacaoSala
     //buscarMedidasEmTempoReal  
 }
