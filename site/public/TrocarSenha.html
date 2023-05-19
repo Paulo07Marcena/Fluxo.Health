@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recuperar Senha</title>
+
+    <link type="text/css" rel="stylesheet" href="../CSS/Recuperar_senha.css" />
+</head>
+<body>
+    <div class="container">
+        <div class="blocks">
+            <img
+            src="../IMG/pagina_de_recuperar_senha.png"
+            alt="image"
+            class="img-principal"
+            />
+        </div>
+        <div class="blocks">
+            <div class="div-return">
+                <a href="../index.html">
+                    <div class="circle">
+                    <img src="../IMG/return.png" alt="Return-img" />
+                    </div>
+                </a>
+            </div>
+            <div class="div-content">
+                <h1>Digite sua Senha</h1>
+                <input id="ipt_senha" placeholder="Nova senha" class="email" />
+                <span id="span_senha">A senha precisa  de 8 digitos!</span>
+                <button onclick="trocarSenha()">Trocar senha</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<script>
+    function trocarSenha(){
+        const senha = ipt_senha.value
+
+        const urlSeparada = location.href.split('/')
+        const idHosp = urlSeparada[urlSeparada.length-1]
+
+        if(senha.length < 8){
+            alert("A nova senha precisa ter pelo monos de 8 digitos")
+        }
+        else{
+            fetch(`http://localhost:3333/recuperarSenha/trocarSenha/${idHosp}`,{
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({novaSenha: senha})
+            })
+            .then(res => {
+                location.href = "http://localhost:3333/Login.html"
+            })
+        }
+    }
+</script>
