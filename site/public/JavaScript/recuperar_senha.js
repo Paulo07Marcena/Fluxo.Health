@@ -1,7 +1,7 @@
 function enviar() {
   // Criando váriaveis:
   let erro = false;
-  let email = ipt_email.value;
+  const email = ipt_email.value;
 
   // Definindo o span com o display none "Escondendo o span":
   span_email.style.display = "none";
@@ -24,13 +24,17 @@ function enviar() {
 
   if (erro == false) {
     modal.style.display = "flex";
-    // Armazenando os dados fornecidos:
-    let dados = {
-      email: email,
-    };
+    
+    fetch(`http://localhost:3333/recuperarSenha`, {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({emailUser: email})
+    })
 
     msg.innerHTML += `
-    <p> Um email com mais informações foi envidado para ${dados.email} </p>
+    <p> Um email com mais informações foi envidado para ${email} </p>
     `;
 
     let modalBox = document.getElementById("modal");

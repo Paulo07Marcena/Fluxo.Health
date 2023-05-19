@@ -9,14 +9,19 @@ function acharEmail(UserEmail) {
 
 function liberarTroca(idHosp){
     const instrucao = `
-        INSERT INTO trocaDeSenhas (fkHospital, concluido) VALUES (${idHosp},0)
+        INSERT INTO trocaDeSenhas (fkHospital, concluido, chamadoData) VALUES (${idHosp},0, now())
     `
     return database.executar(instrucao);
 }
 
 function procurarPermissao(idHosp) {
     const instrucao = `
-        SELECT * from trocaDeSenhas where fkHospital = '${idHosp}' and concluido = 0;
+        SELECT * from trocaDeSenhas 
+        where
+            fkHospital = '${idHosp}' and
+            concluido = 0 and
+            DATE(chamadodata) = DATE(now()) and 
+            time(now()-500) < time(chamadodata);
     `;
     return database.executar(instrucao);
 }
@@ -37,7 +42,7 @@ function trocarSenha(idHosp, novaSenha){
 
 function removerPermissao(idHosp){
     const instrucao = `
-        UPDATE permissaoTroca SET concluido = true WHERE fkHosp = '${idHosp}' 
+        UPDATE trocaDeSenhas SET concluido = true WHERE fkHospital = '${idHosp}' 
     `
     return database.executar(instrucao)
 }
