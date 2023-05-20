@@ -156,7 +156,7 @@ function obterDados(grafico, endpoint) {
         <div class="divTemperatura">
         <p id="temperatura01"></p>
         </div>
-        <img src="IMG/poltronaOcupada.png" />
+        <img src="../IMG/poltronaOcupada.png" />
         <span>Poltrona 01</span>
       </div>
       `;
@@ -178,7 +178,7 @@ function obterDados(grafico, endpoint) {
         <div class="divTemperatura">
         <p id="temperatura01">0.00°C</p>
         </div>
-        <img src="IMG/poltronaLivre.png" />
+        <img src="../IMG/poltronaLivre.png" />
         <span>Poltrona 01</span>
       </div>
       `;
@@ -195,12 +195,15 @@ function obterDados(grafico, endpoint) {
   });
 }
 
+
 setInterval(() => {
   obterDados(lm35Temperatura, "lm35/temperatura");
   obterDados(chave, "chave");
 }, 3000);
 
+
 //
+
 
 const graficoDeLinha = document.getElementById("grafico_de_linha");
 
@@ -244,6 +247,7 @@ const chart = new Chart(graficoDeLinha, {
     },
   },
 });
+
 
 function graficoDeDonutts() {
   // --=| Conta referente aos dados do gráfico Donuts

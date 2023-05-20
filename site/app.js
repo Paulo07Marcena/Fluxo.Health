@@ -12,6 +12,7 @@ var indexRouter = require("./src/routes/index");
 var usuarioRouter = require("./src/routes/usuarios");
 var avisosRouter = require("./src/routes/avisos");
 var medidasRouter = require("./src/routes/medidas");
+var chartRouter = require("./src/routes/chartPoltrona")
 var recuperarSenhaRouter = require("./src/routes/recuperarSenha")
 
 app.use(express.json());
@@ -24,6 +25,8 @@ app.use("/", indexRouter);
 app.use("/usuarios", usuarioRouter);
 app.use("/avisos", avisosRouter);
 app.use("/medidas", medidasRouter)
+//MINNHA ROTA
+app.use("/chartPoltrona", chartRouter)
 app.use("/recuperarSenha",recuperarSenhaRouter)
 
 app.listen(PORTA, function () {

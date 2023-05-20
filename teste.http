@@ -12,3 +12,5 @@ content-Type: application/json
 {
     "novaSenha": "abc123a1"
 }
+=======
+GET HTTP://localhost:3333/chartPoltrona/buscarCadeiras/1
