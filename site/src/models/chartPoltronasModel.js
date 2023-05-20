@@ -27,13 +27,14 @@ function cadeirasEmUso(idSala) {
     let minutoAtual = String(dataAtual.getMinutes()).padStart(2, '0')
     let minutoAntes = String(dataAtual.getMinutes() - 5).padStart(2, '0')
     let miles = dataAtual.getMilliseconds()
+    miles = Math.floor(miles / 10);
 
     let dataFormatada = `${ano}-${mes}-${dia} ${hora}:${minutoAtual}:${miles}`
     let dataPassada = `${ano}-${mes}-${dia} ${hora}:${minutoAntes}:${miles}`
 
 
     instrucaoSql =
-    `select count(fkSensor) as qtde from Registro
+    `select count(distinct(fkSensor)) as qtde from Registro
 	    join Sensor on fkSensor = idSensor
         join Sala on fkSala = idSala
         join Hospital on fkHospital = idHospital
@@ -102,6 +103,7 @@ function buscarCadeiras(idSala){
     let minutoAtual = String(dataAtual.getMinutes()).padStart(2, '0')
     let minutoAntes = String(dataAtual.getMinutes() - 5).padStart(2, '0')
     let miles = dataAtual.getMilliseconds()
+    miles = Math.floor(miles / 10);
 
     let dataFormatada = `${ano}-${mes}-${dia} ${hora}:${minutoAtual}:${miles}`
     let dataPassada = `${ano}-${mes}-${dia} ${hora}:${minutoAntes}:${miles}`
@@ -119,9 +121,11 @@ function buscarCadeiras(idSala){
 		  and dataHora between '2023-05-18 21:45:00' and '2023-05-18 21:50:00'
           order by idPoltrona;`*/
 
+    console.log(dataPassada + "    " + dataFormatada)
+
 
     instrucaoSql =
-    `select Poltrona.idPoltrona, Poltrona.nome ,Registro.valor from Poltrona 
+    `select distinct(Poltrona.idPoltrona), Poltrona.nome ,Registro.valor from Poltrona 
 	    join Sensor on fkPoltrona = idPoltrona
         join Registro on fkSensor = idSensor
 	    join Sala on Poltrona.fkSala = Sala.idSala
