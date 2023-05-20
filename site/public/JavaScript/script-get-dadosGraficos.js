@@ -1,3 +1,8 @@
+let idSessionSala = 1
+let idSessionHospital = 1
+
+
+
 let graficoDonuts = document.getElementById('grafico_donuts')
 let graficoDeLinha = document.getElementById("grafico_de_linha");
 
@@ -7,30 +12,56 @@ let carregarLinha = [{
     dataDiaria: '01/01',
     contagem: 0
 }]
+let contagem
+let dadosLotacao = []
+let dadosKpi = [0, 0]
+let poltronas
 
 window.load = plotarGraficoLotacao(carregarDonuts)
 window.load = plotarGraficoLinha(carregarLinha)
+window.load = buscarCadeirasEmUso(idSessionSala)
+window.load = buscarTotalCadeiras(idSessionSala)
+window.load = buscarCadeiras(idSessionSala)
+window.load = listarCadeiras(poltronas)
+window.load = contagemPoltronas(dadosKpi)
 
-let dadosLotacao = []
-let poltronas
 
+setTimeout(() => {
 
-// Atualizar gráficos
-setInterval(() => {
-    buscarCadeirasEmUso(1)
-    buscarTotalCadeiras(1)
-
-    buscarLotacaoDiaria(1)
-
-    buscarCadeiras(1)
+    buscarCadeirasEmUso(idSessionSala)
+    buscarTotalCadeiras(idSessionSala)
+    buscarLotacaoDiaria(idSessionSala)
+    buscarCadeiras(idSessionSala)
 
     containerPoltrona.innerHTML = ''
     listarCadeiras(poltronas)
 
     plotarGraficoLotacao(dadosLotacao) 
-    
+    contagemPoltronas(dadosLotacao)
 
-}, 10000)
+}, 4000)
+
+// Atualizar gráficos
+let atualizar2 = setInterval(() => {
+
+    containerPoltrona.innerHTML = ''
+    listarCadeiras(poltronas)
+    plotarGraficoLotacao(dadosLotacao) 
+    contagemPoltronas(dadosLotacao)
+    
+}, 11000)
+
+
+// Atualizar gráficos
+let atualizar = setInterval(() => {
+
+    buscarCadeirasEmUso(idSessionSala)
+    buscarTotalCadeiras(idSessionSala)
+    buscarLotacaoDiaria(idSessionSala)
+    buscarCadeiras(idSessionSala)
+    
+}, 11000)
+
 
 
 // -=-========================================================||
@@ -239,7 +270,6 @@ function plotarGraficoLinha(dados) {
 
 // -=================================================\\
 
-window.load = buscarCadeiras(1)
 let containerPoltrona = document.getElementById('poltronaMaluca')
 
 function buscarCadeiras(idSala) {
@@ -262,7 +292,6 @@ function buscarCadeiras(idSala) {
 
 }
 
-let contagem
 function listarCadeiras(a) {
 
  contagem = dadosLotacao[0]
@@ -309,7 +338,7 @@ function listarCadeiras(a) {
        `
        <div class="poltrona">
            <img src="../IMG/poltronaNull.png" />
-           <span>Poltrona 02</span>
+           <span>Sem Registro</span>
        </div>
        `
    }
@@ -321,3 +350,16 @@ function listarCadeiras(a) {
 
 
 // -=================================================\\
+
+
+function contagemPoltronas(dadosLotacao){
+
+    var vazias = dadosLotacao[0] - dadosLotacao[1]
+    var emUso = dadosLotacao [1]
+
+    document.getElementById('poltronaLivre').innerHTML = vazias
+    document.getElementById('poltronaOcupada').innerHTML = emUso
+
+    console.log('aaa' + emUso)
+
+}
