@@ -194,3 +194,8 @@ span {
   flex-direction: column;
   color: #3781db;
 }
+
+.password {
+  background-image: url(../IMG/pass.png);
+  margin-bottom: 0;
+}
