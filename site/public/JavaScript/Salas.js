@@ -38,8 +38,10 @@ function loadRooms() {
                     <p class="roomTitle">${roomsInfo[j].nomeSala}</p>
                     <div class="roomCapacityArea">
                         <p>Lotação</p>
-                        <div class="roomCapacity ${occupation ? "roomFull" : "roomEmpty"}"> <a href="./Poltronas.html" class="link-sala"> ${occupation ? "Cheia" : "Normal"} </a>
-                        </div>
+                        <a href="./Poltronas.html?id=${roomsInfo[j].idSala}" class="link-sala"> 
+                          <div class="roomCapacity ${occupation ? "roomFull" : "roomEmpty"}">  ${occupation ? "Cheia" : "Normal"} 
+                          </div> 
+                        </a>
                     </div>
                 </div>
             `;

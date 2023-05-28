@@ -1,7 +1,13 @@
-let idSessionSala = 1
+let idSessionSala
 let idSessionHospital = 1
 
-
+var pegarId = ()=>{
+    var query = location.search.slice(1);
+    var query = query.split('=')
+    idSessionSala = Number(query[1])
+    console.log('PEGOU O ID: ' + idSessionSala)
+}
+window.load = pegarId()
 
 let graficoDonuts = document.getElementById('grafico_donuts')
 let graficoDeLinha = document.getElementById("grafico_de_linha");
@@ -178,7 +184,21 @@ function plotarGraficoLinha(dados) {
     let data = [];
     let labels = [];
 
-    if (dados.length < 6) {
+    if(dados.length == 0){
+
+        var dataAtual = new Date()
+        var mesAtual = dataAtual.getMonth()
+        var diaAtual = dataAtual.getDate()
+
+        for(var d = 6; d > 0;d--){
+            labels.push(
+                `${diaAtual - d}/0${mesAtual + 1}`
+            )
+            data.push(0)
+        }
+
+
+    } else if (dados.length < 6) {
 
         // Pegando os dois primeiros caracteres e tranformando em numéricos
         var ultimaData = dados[0].dataDiaria

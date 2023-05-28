@@ -35,9 +35,11 @@ function InfoSalas(idHosp) {
     (
         SELECT count(*) as TotalPoltronasUso from Registro 
         join Sensor on fkSensor = idSensor
+        join TipoSensor on fkTipoSensor = idTipo
         join poltrona on fkPoltrona = idPoltrona
         where DATE(dataHora) = DATE(now()) and 
         time(now()-500) < time(dataHora) and fkSala = S.idSala
+        and idTipo = 2
     ) as totalPoltonasUso,
     (
         SELECT count(*) as TotalPoltronas FROM poltrona 
