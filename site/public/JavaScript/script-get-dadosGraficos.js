@@ -292,54 +292,102 @@ function buscarCadeiras(idSala) {
 
 }
 
-function listarCadeiras(a) {
+function listarCadeiras(ocupadas) {
 
  contagem = dadosLotacao[0]
 
     for (var i = 0; i < contagem; i++) {
 
-        if (i < a.length) {
+        if (i < ocupadas.length) {
 
-            containerPoltrona.innerHTML +=
+            poltronaMaluca.innerHTML +=
                 `
-                <div class="poltrona">
-                    <div class="divTemperatura">
-                        <p>${a[i].valor}°c</p>
+                <div class="contPoltrona">
+                    <div class="poltrona">
+
+                        <div class="divTemperatura">
+                            <p>${ocupadas[i].valor}°c</p>
+                        </div>
+
+                        <img src="../IMG/poltronaOcupada.png" />
+
+                        <span>${ocupadas[i].nomePoltrona}</span>
+
                     </div>
-    
-                    <img src="../IMG/poltronaOcupada.png"/>
-    
-                    <span>${a[i].nome}</span>
+
+                    <div class="showTermometro">
+                        <img src="../IMG/termometro-amarelo.png" class="termometro">
+                    </div>
+
                 </div>
                 `
 
+                var showTermometro = document.getElementsByClassName('showTermometro') 
+                if(ocupadas[i].valor <= 35.5){
+                    showTermometro[i].innerHTML = '<img src="../IMG/termometro-roxo.png" class="termometro">'
+
+                }else if(ocupadas[i].valor >= 35.6 && ocupadas[i].valor <= 37.5){
+                    showTermometro[i].innerHTML = '<img src="../IMG/termometro-verde.png" class="termometro">'
+
+                } else if(ocupadas[i].valor >= 37.6 && ocupadas[i].valor <= 38){
+                    showTermometro[i].innerHTML = '<img src="../IMG/termometro-amarelo.png" class="termometro">'
+
+                } else if(ocupadas[i].valor >= 38.1 && ocupadas[i].valor <= 39.5){
+                    showTermometro[i].innerHTML = '<img src="../IMG/termometro-laranja.png" class="termometro">'
+
+                } else if(ocupadas[i].valor >= 39.6){
+                    showTermometro[i].innerHTML = '<img src="../IMG/termometro-vermelho.png" class="termometro">'
+
+                }
+
+
+
         } else {
 
-            containerPoltrona.innerHTML +=
+            poltronaMaluca.innerHTML +=
                 `
-                <div class="poltrona">
-                    <div class="divTemperatura">
-                        <p>0.0°c</p>
+                <div class="contPoltrona">
+                    <div class="poltrona">
+
+                        <div class="divTemperatura">
+                            <p>0.0°c</p>
+                        </div>
+
+                        <img src="../IMG/poltronaLivre.png" />
+
+                        <span>Vazia</span>
+
                     </div>
-    
-                    <img src="../IMG/poltronaLivre.png"/>
-    
-                    <span>Vazia</span>
+
+                    <div class="showTermometro">
+                        <img src="../IMG/termometro-cinza.png" class="termometro">
+                    </div>
+
                 </div>
                 `
         }
 
     }
 
-    var teste = 8 - contagem
-    for(var i = 0; i < teste; i++){
-        console.log(teste)
+
+    var semRegistro = 8 - contagem
+    for(var i = 0; i < semRegistro; i++){
        containerPoltrona.innerHTML +=
        `
-       <div class="poltrona">
-           <img src="../IMG/poltronaNull.png" />
-           <span>Sem Registro</span>
-       </div>
+        <div class="contPoltrona">
+            <div class="poltrona">
+
+                <img src="../IMG/poltronaNull.png" />
+
+                <span>Sem registro</span>
+
+            </div>
+
+            <div class="showTermometro">
+                <img src="../IMG/termometro-cinza.png" class="termometro">
+            </div>
+
+        </div>
        `
    }
 
