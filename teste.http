@@ -1,1 +1,20 @@
+
 GET http://localhost:3333/salas/listar/1
+
+POST http://localhost:3333/recuperarSenha
+content-Type: application/json
+
+{
+    "emailUser": "andreylrodrigues05@gmail.com"
+}
+
+
+POST http://localhost:3333/recuperarSenha/trocarSenha/1
+content-Type: application/json
+
+{
+    "novaSenha": "abc123a1"
+}
+
+GET HTTP://localhost:3333/chartPoltrona/buscarCadeiras/1
+
