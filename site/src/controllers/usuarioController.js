@@ -25,16 +25,15 @@ function listar(req, res) {
 }
 
 function entrar(req, res) {
-    var email = req.body.emailServer;
-    var senha = req.body.senhaServer;
+    var loginHosp = req.body.loginServer;
+    var senhaHosp = req.body.senhaServer;
 
-    if (email == undefined) {
-        res.status(400).send("Seu email está undefined!");
-    } else if (senha == undefined) {
+    if (loginHosp == undefined) {
+        res.status(400).send("Seu email está indefinido!");
+    } else if (senhaHosp == undefined) {
         res.status(400).send("Sua senha está indefinida!");
     } else {
-        
-        usuarioModel.entrar(email, senha)
+        usuarioModel.entrar(loginHosp, senhaHosp)
             .then(
                 function (resultado) {
                     console.log(`\nResultados encontrados: ${resultado.length}`);

@@ -58,7 +58,7 @@
               alt="Imagem Usuário" />
             <button class="profileButton" onclick="Abrir()">Perfil</button>
           </div>
-          <p class="userName modify">Olá, User!</p>
+          <p class="userName modify" id="ola"></p>
         </div>
         <div class="optionsCont">
           <a class="option selected modifyOption" href="../Salas.html">
@@ -122,3 +122,13 @@
 </body>
 
 </html>
+
+<script>
+
+var nome = sessionStorage.nomeHosp
+  var id = sessionStorage.idHosp
+
+ola.innerHTML = `Olá, ${nome}`
+
+
+</script>
