@@ -2,32 +2,37 @@ function cadastrar() {
   // Criando váriaveis:
   let erro = false;
   let nome = ipt_nome.value;
-  let telefone = ipt_telefone.value;
-  let email = ipt_email.value;
+  let login = ipt_email.value;
   let senha = ipt_senha.value;
-  let hospital = ipt_hospital.value;
   let cep = ipt_cep.value;
   let numero = ipt_numero.value;
+  let cnpj = ipt_cnpj.value
+  let plano = 0
 
   // Definindo o span com o display none "Escondendo o span":
-  span_nome.style.display = "none";
+  span_hospital.style.display = "none";
   span_email.style.display = "none";
   span_telefone.style.display = "none";
   span_senha.style.display = "none";
-  span_hospital.style.display = "none";
 
   // Definindo a cor das bordas dos inputs
-  ipt_telefone.style.border = "solid 2px #3781db";
   ipt_nome.style.border = "solid 2px #3781db";
   ipt_email.style.border = "solid 2px #3781db";
   ipt_senha.style.border = "solid 2px #3781db";
-  ipt_hospital.style.border = "solid 2px #3781db";
 
   // Limpando:
   msg.innerHTML = "";
 
   // Testes de validações:
 
+
+if (Premium.checked) {
+  plano = 2
+}
+
+if (basico.checked) {
+  plano = 1
+} 
   // Nome:
   if (nome == "") {
     erro = true;
@@ -36,24 +41,8 @@ function cadastrar() {
     ipt_nome.style.border = "solid 2px #ff0000";
   }
 
-  // Hospital:
-  if (hospital == "") {
-    erro = true;
-    span_hospital.style.display = "block";
-    span_hospital.style.position = "relative";
-    ipt_hospital.style.border = "solid 2px #ff0000";
-  }
-
-  // Telefone:
-  if (isNaN(telefone) || telefone == "") {
-    erro = true;
-    span_telefone.style.display = "block";
-    span_telefone.style.position = "relative";
-    ipt_telefone.style.border = "solid 2px #ff0000";
-  }
-
   // Email:
-  if (!email.includes("@") || !email.includes(".com")) {
+  if (!login.includes("@") || !login.includes(".com")) {
     erro = true;
     span_email.style.position = "relative";
     span_email.style.display = "block";
@@ -81,15 +70,18 @@ function cadastrar() {
     // Armazenando os dados fornecidos:
     let dados = {
       nome: nome,
-      telefone: telefone,
-      email: email,
+      cep: cep,
+      numero: numero,
+      cnpj: cnpj,
+      login: login,
       senha: senha,
+      plano: plano,
     };
 
     msg.innerHTML += `
     <h3> ${dados.nome} seja muito bem vindo(a) a Fluxo Health! <h3>
     <br>
-    <p> Um email com mais informações foi envidado para ${dados.email} </p>
+    <p> Um email com mais informações foi envidado para ${dados.login} </p>
     `;
 
     let modalBox = document.getElementById("modal");
@@ -101,12 +93,55 @@ function cadastrar() {
       }
 
       ipt_nome.value = "";
-      ipt_hospital.value = "";
       ipt_cep.value = "";
       ipt_numero.value = "";
       ipt_email.value = "";
-      ipt_telefone.value = "";
       ipt_senha.value = "";
+      ipt_cnpj.value = "";
     });
   }
+  fetch("/usuarios/cadastrar", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+        // crie um atributo que recebe o valor recuperado aqui
+        // Agora vá para o arquivo routes/usuario.js
+        nomeHospServer: nome,
+        cepServer: cep,
+        numServer: numero,
+        cnpjServer:cnpj,
+        loginServer: login,
+        senhaServer: senha,
+        planoServer: plano,
+    })
+  }).then(function (resposta) {
+  
+    console.log("resposta: ", resposta);
+  
+    if (resposta.ok) {
+        cardErro.style.display = "block";
+  
+        mensagem_erro.innerHTML = "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+  
+        setTimeout(() => {
+            window.location = "Login.html";
+        }, "2000")
+  
+        limparFormulario();
+        finalizarAguardar();
+    } else {
+        throw ("Houve um erro ao tentar realizar o cadastro!");
+    }
+  }).catch(function (resposta) {
+    console.log(`#ERRO: ${resposta}`);
+    finalizarAguardar();
+  });
+  
+  return false; 
+  }
+
+function sumirMensagem() {
+cardErro.style.display = "none"
 }

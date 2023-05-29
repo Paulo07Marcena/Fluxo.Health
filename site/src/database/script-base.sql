@@ -1,4 +1,5 @@
 create database fluxohealth;
+
 use fluxohealth;
 
 create table Plano(
@@ -7,11 +8,6 @@ create table Plano(
     descricaoPlano varchar(255),
     valor decimal(8,2) check (valor > 0)
 );
-
-insert into Plano
-values (null, 'Básico', 'Plano básico contendo poucas vantagens', 2500),
-	   (null, 'Premium', 'Contém diversas vantagens ao adquirir esse plano', 4000);
-
 
 create table Hospital(
 	idHosp int primary key auto_increment,

@@ -66,7 +66,7 @@ function entrar() {
               
               setTimeout(() => {
             
-                window.location = "Salas.html"
+                window.location = "./dashboard/Salas.html"
               }, "2000")
 
             })

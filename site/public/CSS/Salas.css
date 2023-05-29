@@ -62,7 +62,7 @@
 
 .roomsArea {
   display: flex;
-  width: auto;
+  width: 100%;
   height: 80%;
   flex-direction: column;
   justify-content: center;
