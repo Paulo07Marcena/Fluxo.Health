@@ -1,13 +1,12 @@
 let idSessionSala
 let idSessionHospital = 1
 
-var pegarId = ()=>{
+var pegarId = () => {
     var query = location.search.slice(1);
     var query = query.split('=')
     idSessionSala = Number(query[1])
     console.log('PEGOU O ID: ' + idSessionSala)
 }
-window.load = pegarId()
 
 let graficoDonuts = document.getElementById('grafico_donuts')
 let graficoDeLinha = document.getElementById("grafico_de_linha");
@@ -15,7 +14,7 @@ let graficoDeLinha = document.getElementById("grafico_de_linha");
 // Colocar dados ao carregar
 let carregarDonuts = [2, 1]
 let carregarLinha = [{
-    dataDiaria: '01/01',
+    dataDiaria: '05/01',
     contagem: 0
 }]
 let contagem
@@ -23,6 +22,7 @@ let dadosLotacao = []
 let dadosKpi = [0, 0]
 let poltronas
 
+window.load = pegarId()
 window.load = plotarGraficoLotacao(carregarDonuts)
 window.load = plotarGraficoLinha(carregarLinha)
 window.load = buscarCadeirasEmUso(idSessionSala)
@@ -42,7 +42,7 @@ setTimeout(() => {
     containerPoltrona.innerHTML = ''
     listarCadeiras(poltronas)
 
-    plotarGraficoLotacao(dadosLotacao) 
+    plotarGraficoLotacao(dadosLotacao)
     contagemPoltronas(dadosLotacao)
 
 }, 4000)
@@ -52,9 +52,9 @@ let atualizar2 = setInterval(() => {
 
     containerPoltrona.innerHTML = ''
     listarCadeiras(poltronas)
-    plotarGraficoLotacao(dadosLotacao) 
+    plotarGraficoLotacao(dadosLotacao)
     contagemPoltronas(dadosLotacao)
-    
+
 }, 11000)
 
 
@@ -65,7 +65,7 @@ let atualizar = setInterval(() => {
     buscarTotalCadeiras(idSessionSala)
     buscarLotacaoDiaria(idSessionSala)
     buscarCadeiras(idSessionSala)
-    
+
 }, 11000)
 
 
@@ -129,7 +129,7 @@ function plotarGraficoLotacao(dadosSala) {
     let porcCadeirasOcupadas = (cadeirasOcupadas * 100) / totalCadeiras
 
     let dados = {
-        datasets: [     
+        datasets: [
             {
                 data: [porcCadeirasOcupadas, porcCadeirasVazias],
                 backgroundColor: ["#011526", "#188CED"],
@@ -184,13 +184,13 @@ function plotarGraficoLinha(dados) {
     let data = [];
     let labels = [];
 
-    if(dados.length == 0){
+    if (dados.length == 0) {
 
         var dataAtual = new Date()
         var mesAtual = dataAtual.getMonth()
         var diaAtual = dataAtual.getDate()
 
-        for(var d = 6; d > 0;d--){
+        for (var d = 6; d > 0; d--) {
             labels.push(
                 `${diaAtual - d}/0${mesAtual + 1}`
             )
@@ -200,23 +200,15 @@ function plotarGraficoLinha(dados) {
 
     } else if (dados.length < 6) {
 
-        // Pegando os dois primeiros caracteres e tranformando em numéricos
-        var ultimaData = dados[0].dataDiaria
-        var diaData = Number(`${ultimaData[0]}${ultimaData[1]}`)
+        var ultimaData = dados[0].dataDiaria.split('/')
+        var diaData = Number(ultimaData[0])
 
         for (var i = 3; i > 0; i--) {
 
-            if (diaData < 10) {
-                labels.push(
-                    `0${diaData - i}/${ultimaData[3]}${ultimaData[4]}`
-                )
-                data.push(0)
-            } else {
-                labels.push(
-                    `${diaData - i}/${ultimaData[3]}${ultimaData[4]}`
-                )
-                data.push(0)
-            }
+            labels.push(
+                `${diaData - i}/${ultimaData[1]}`
+            )
+            data.push(0)
 
         }
 
@@ -290,8 +282,8 @@ function plotarGraficoLinha(dados) {
 
 // -=================================================\\
 
-let containerPoltrona = document.getElementById('poltronaMaluca')
 
+let containerPoltrona = document.getElementById('poltronaMaluca')
 function buscarCadeiras(idSala) {
 
     fetch(`/chartPoltrona/buscarCadeiras/${idSala}`, { cache: 'no-store' }).then(function (response) {
@@ -312,9 +304,10 @@ function buscarCadeiras(idSala) {
 
 }
 
+
 function listarCadeiras(ocupadas) {
 
- contagem = dadosLotacao[0]
+    contagem = dadosLotacao[0]
 
     for (var i = 0; i < contagem; i++) {
 
@@ -326,7 +319,7 @@ function listarCadeiras(ocupadas) {
                     <div class="poltrona">
 
                         <div class="divTemperatura">
-                            <p>${ocupadas[i].valor}°c</p>
+                            <p>${Number(ocupadas[i].valor).toFixed(1)}°c</p>
                         </div>
 
                         <img src="../IMG/poltronaOcupada.png" />
@@ -342,24 +335,23 @@ function listarCadeiras(ocupadas) {
                 </div>
                 `
 
-                var showTermometro = document.getElementsByClassName('showTermometro') 
-                if(ocupadas[i].valor <= 35.5){
-                    showTermometro[i].innerHTML = '<img src="../IMG/termometro-roxo.png" class="termometro">'
+            var showTermometro = document.getElementsByClassName('showTermometro')
+            if (ocupadas[i].valor <= 35.5) {
+                showTermometro[i].innerHTML = '<img src="../IMG/termometro-roxo.png" class="termometro">'
 
-                }else if(ocupadas[i].valor >= 35.6 && ocupadas[i].valor <= 37.5){
-                    showTermometro[i].innerHTML = '<img src="../IMG/termometro-verde.png" class="termometro">'
+            } else if (ocupadas[i].valor >= 35.6 && ocupadas[i].valor <= 37.5) {
+                showTermometro[i].innerHTML = '<img src="../IMG/termometro-verde.png" class="termometro">'
 
-                } else if(ocupadas[i].valor >= 37.6 && ocupadas[i].valor <= 38){
-                    showTermometro[i].innerHTML = '<img src="../IMG/termometro-amarelo.png" class="termometro">'
+            } else if (ocupadas[i].valor >= 37.6 && ocupadas[i].valor <= 38) {
+                showTermometro[i].innerHTML = '<img src="../IMG/termometro-amarelo.png" class="termometro">'
 
-                } else if(ocupadas[i].valor >= 38.1 && ocupadas[i].valor <= 39.5){
-                    showTermometro[i].innerHTML = '<img src="../IMG/termometro-laranja.png" class="termometro">'
+            } else if (ocupadas[i].valor >= 38.1 && ocupadas[i].valor <= 39.5) {
+                showTermometro[i].innerHTML = '<img src="../IMG/termometro-laranja.png" class="termometro">'
 
-                } else if(ocupadas[i].valor >= 39.6){
-                    showTermometro[i].innerHTML = '<img src="../IMG/termometro-vermelho.png" class="termometro">'
+            } else if (ocupadas[i].valor >= 39.6) {
+                showTermometro[i].innerHTML = '<img src="../IMG/termometro-vermelho.png" class="termometro">'
 
-                }
-
+            }
 
 
         } else {
@@ -391,9 +383,9 @@ function listarCadeiras(ocupadas) {
 
 
     var semRegistro = 8 - contagem
-    for(var i = 0; i < semRegistro; i++){
-       containerPoltrona.innerHTML +=
-       `
+    for (var i = 0; i < semRegistro; i++) {
+        containerPoltrona.innerHTML +=
+            `
         <div class="contPoltrona">
             <div class="poltrona">
 
@@ -409,10 +401,7 @@ function listarCadeiras(ocupadas) {
 
         </div>
        `
-   }
-
-
-
+    }
 
 }
 
@@ -420,14 +409,14 @@ function listarCadeiras(ocupadas) {
 // -=================================================\\
 
 
-function contagemPoltronas(dadosLotacao){
+function contagemPoltronas(dadosLotacao) {
 
     var vazias = dadosLotacao[0] - dadosLotacao[1]
-    var emUso = dadosLotacao [1]
+    var emUso = dadosLotacao[1]
 
     document.getElementById('poltronaLivre').innerHTML = vazias
     document.getElementById('poltronaOcupada').innerHTML = emUso
 
-    console.log('aaa' + emUso)
+    console.log('Poltronas em uso: ' + emUso)
 
 }
