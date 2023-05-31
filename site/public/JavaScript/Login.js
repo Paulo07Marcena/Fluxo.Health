@@ -1,7 +1,7 @@
 function entrar() {
   var login = ipt_email.value;
   var senha = ipt_senha.value;
-  var tem_erro = true;
+  var tem_erro = false;
 
   // Email da fluxo:
   // var emailFluxo = "fluxo.health@gmail.com";
@@ -26,7 +26,7 @@ function entrar() {
     tem_erro = true;
   }
 
-  if (senha == "" ) {
+  if (senha == "") {
     ipt_senha.value = "";
     ipt_senha.style = "border-color: red";
     div_erro2.innerHTML = `Senha incorreta.`;
@@ -36,13 +36,8 @@ function entrar() {
   if (tem_erro != true) {
     div_erro.innerHTML = ``;
     div_erro2.innerHTML = ``;
-  }
 
-  
-  // if (email == emailFluxo && senha == senhaFluxo) {
-  //     window.location.href = "./Salas.html";
-  //   }
-  
+
     fetch("/usuarios/entrar", {
       method: "POST",
       headers: {
@@ -52,38 +47,36 @@ function entrar() {
         loginServer: login,
         senhaServer: senha
       })
-      }).then(function (resultados) {
-        console.log("resultados: ", resultados);
+    }).then(function (resultados) {
+      console.log("resultados: ", resultados);
 
-        if (resultados.ok) {
+      if (resultados.ok) {
+        resultados.json().then(
 
-          resultados.json().then(
-            dados => {
-              console.log(dados)
-              
-              sessionStorage.nomeHosp = dados.nomeHosp
-              sessionStorage.idHosp = dados.idHosp
-              
-              setTimeout(() => {
-            
-                window.location = "./dashboard/Salas.html"
-              }, "2000")
+          dados => {
+            console.log(dados)
 
-            })
+            sessionStorage.nomeHosp = dados.nomeHosp
+            sessionStorage.idHosp = dados.idHosp
 
-          
-          
-        } else {
-            throw ("Houve um erro ao entrar!")
-        }
-        
-      }). catch(function (resultados) {
-        console.log(`ERRO: ${resultados}`)
-      });
-      
-      return false
+            setTimeout(() => {
 
-    }
-  
-  
-  
+              window.location = "./dashboard/Salas.html"
+            }, "1000")
+
+          })
+
+      } else {
+        throw ("Houve um erro ao entrar!")
+      }
+
+    }).catch(function (resultados) {
+      console.log(`ERRO: ${resultados}`)
+    });
+
+    return false
+
+  }
+
+}
+

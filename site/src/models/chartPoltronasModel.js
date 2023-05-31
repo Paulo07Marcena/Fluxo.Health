@@ -23,7 +23,7 @@ function cadeirasEmUso(idSala) {
         join Poltrona on fkPoltrona = idPoltrona
         join Sala on fkSala = idSala
             where idSala = ${idSala} and idTipo = 1
-            and valor > 0 and dataHora between now() - 500 and now();
+            and valor > 0 and dataHora between now() - 200 and now();
     `;
 
     return database.executar(instrucaoSql)
@@ -50,7 +50,7 @@ function lotacaoDiariaSala(idSala){
             where year(dataHora) = ${anoAtual}
               and month(dataHora) = ${mesAtual}
               and day(dataHora) between ${ultimoDia} and ${diaAtual} 
-              and idSala = ${idSala} and valor > 0 and idHosp = 1 and idTipo = 2
+              and idSala = ${idSala} and valor > 0 and idHosp = 1 and idTipo = 1
 		    group by dataDiaria
             order by dataDiaria asc limit 6;
     `;
@@ -68,8 +68,8 @@ function buscarCadeiras(idSala){
 	    join Sensor on fkPoltrona = idPoltrona
         join TipoSensor on Sensor.fkTipoSensor = idTipo
         join Registro reg on fkSensor = idSensor
-		    where idSala = ${idSala} and idTipo = 2
-		    and dataHora between now() - 500 and now();
+		    where idSala = ${idSala} and idTipo = 1
+		    and dataHora between now() - 200 and now();
     `;
 
     return database.executar(instrucaoSql)

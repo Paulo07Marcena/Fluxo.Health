@@ -12,13 +12,18 @@ function cadastrar() {
   // Definindo o span com o display none "Escondendo o span":
   span_hospital.style.display = "none";
   span_email.style.display = "none";
-  span_telefone.style.display = "none";
+  span_cnpj.style.display = "none";
   span_senha.style.display = "none";
+  span_local.style.display = "none";
+  span_local.style.position = "none";
+
 
   // Definindo a cor das bordas dos inputs
   ipt_nome.style.border = "solid 2px #3781db";
   ipt_email.style.border = "solid 2px #3781db";
   ipt_senha.style.border = "solid 2px #3781db";
+  ipt_cep.style.border = "solid 2px #3781db";
+  ipt_numero.style.border = "solid 2px #3781db";
 
   // Limpando:
   msg.innerHTML = "";
@@ -26,18 +31,18 @@ function cadastrar() {
   // Testes de validações:
 
 
-if (Premium.checked) {
-  plano = 2
-}
+  if (Premium.checked) {
+    plano = 2
+  }
 
-if (basico.checked) {
-  plano = 1
-} 
+  if (basico.checked) {
+    plano = 1
+  }
   // Nome:
   if (nome == "") {
     erro = true;
-    span_nome.style.display = "block";
-    span_nome.style.position = "relative";
+    span_hospital.style.display = "block";
+    span_hospital.style.position = "relative";
     ipt_nome.style.border = "solid 2px #ff0000";
   }
 
@@ -57,12 +62,19 @@ if (basico.checked) {
     ipt_senha.style.border = "solid 2px #ff0000";
   }
 
-  if(!cep.includes("-") || cep.indexOf("-") != 5  || numero.length == 0){
+  if (!cep.includes("-") || cep.indexOf("-") != 5 || numero.length == 0) {
     erro = true;
     span_local.style.display = "block";
     span_local.style.position = "relative";
     ipt_cep.style.border = "solid 2px #ff0000";
     ipt_numero.style.border = "solid 2px #ff0000";
+  }
+
+  if(cnpj.length > 14 || cnpj == ''){
+    erro = true;
+    span_cnpj.style.display = "block";
+    span_cnpj.style.position = "relative";
+    ipt_cnpj.style.border = "solid 2px #ff0000";
   }
 
   if (erro == false) {
@@ -99,49 +111,46 @@ if (basico.checked) {
       ipt_senha.value = "";
       ipt_cnpj.value = "";
     });
-  }
-  fetch("/usuarios/cadastrar", {
-    method: "POST",
-    headers: {
+    
+
+    fetch("/usuarios/cadastrar", {
+      method: "POST",
+      headers: {
         "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
+      },
+      body: JSON.stringify({
         // crie um atributo que recebe o valor recuperado aqui
         // Agora vá para o arquivo routes/usuario.js
         nomeHospServer: nome,
         cepServer: cep,
         numServer: numero,
-        cnpjServer:cnpj,
+        cnpjServer: cnpj,
         loginServer: login,
         senhaServer: senha,
         planoServer: plano,
-    })
-  }).then(function (resposta) {
-  
-    console.log("resposta: ", resposta);
-  
-    if (resposta.ok) {
-        cardErro.style.display = "block";
-  
-        mensagem_erro.innerHTML = "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
-  
+      })
+    }).then(function (resposta) {
+
+      console.log("resposta: ", resposta);
+
+      if (resposta.ok) {
+       
+        modal.style = 'display: none'
+        msg.style = 'display: none'
+
         setTimeout(() => {
-            window.location = "Login.html";
+          window.location = "Login.html";
         }, "2000")
-  
-        limparFormulario();
-        finalizarAguardar();
-    } else {
+
+      } else {
         throw ("Houve um erro ao tentar realizar o cadastro!");
-    }
-  }).catch(function (resposta) {
-    console.log(`#ERRO: ${resposta}`);
-    finalizarAguardar();
-  });
-  
-  return false; 
+      }
+    }).catch(function (resposta) {
+      console.log(`#ERRO: ${resposta}`);
+    });
+
+    return false;
+
   }
 
-function sumirMensagem() {
-cardErro.style.display = "none"
 }
