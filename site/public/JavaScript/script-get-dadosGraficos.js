@@ -5,6 +5,8 @@ var pegarId = () => {
     var query = location.search.slice(1);
     var query = query.split('=')
     idSessionSala = Number(query[1])
+
+    id_sala.innerHTML = `0${idSessionSala}`
     console.log('PEGOU O ID: ' + idSessionSala)
 }
 

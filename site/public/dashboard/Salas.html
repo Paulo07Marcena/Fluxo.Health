@@ -54,22 +54,22 @@
         <div class="userCont">
           <div class="userIcon modifyImage">
             <img class="userImage"
-              src="https://img.freepik.com/fotos-gratis/estilo-de-vida-beleza-e-moda-conceito-de-emocoes-de-pessoas-jovem-gerente-de-escritorio-feminino-asiatico-ceo-com-expressao-satisfeita-em-pe-sobre-um-fundo-branco-sorrindo-com-os-bracos-cruzados-sobre-o-peito_1258-59329.jpg?w=2000"
+              src="../IMG/logo-hospital-perfil.jpg"
               alt="Imagem Usuário" />
             <button class="profileButton" onclick="Abrir()">Perfil</button>
           </div>
           <p class="userName modify" id="ola"></p>
         </div>
         <div class="optionsCont">
-          <a class="option selected modifyOption" href="../Salas.html">
+          <a class="option selected modifyOption" href="./Salas.html">
             <img class="optionIcon" src="../IMG/salasIcon.png" />
             <p class="optionName modify">Salas</p>
           </a>
-          <a class="option modifyOption" href="../Chamado.html">
+          <a class="option modifyOption" href="https://fluxohealth.atlassian.net/servicedesk/customer/portals" target="_blank">
             <img class="optionIcon" src="../IMG/mensagemIcon.png" />
-            <p class="optionName modify">Chamados</p>
+            <p class="optionName modify">Suporte</p>
           </a>
-          <a class="option modifyOption" href="../Login.html">
+          <a class="option modifyOption" onclick="logout()">
             <img class="optionIcon" src="../IMG/sairIcon.png" />
             <p class="optionName modify">Sair</p>
           </a>
@@ -115,6 +115,26 @@
     </div>
   </div>
 
+  <script>
+
+    if(sessionStorage.idHosp == null || sessionStorage.idHosp == undefined || sessionStorage.idHosp == ''){
+  
+      window.location = '../Login.html'
+  
+    } else{
+      
+      var nome = sessionStorage.nomeHosp
+      var id = sessionStorage.idHosp
+      ola.innerHTML = `Olá, ${nome}`
+  
+    }
+  
+    function logout(){
+      sessionStorage.clear();
+      window.location = '../Login.html'
+    }
+  
+  </script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="../JavaScript/LeftBar.js"></script>
   <script src="../JavaScript/Salas.js"></script>
@@ -123,12 +143,4 @@
 
 </html>
 
-<script>
 
-var nome = sessionStorage.nomeHosp
-  var id = sessionStorage.idHosp
-
-ola.innerHTML = `Olá, ${nome}`
-
-
-</script>
