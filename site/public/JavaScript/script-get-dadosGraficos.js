@@ -311,10 +311,10 @@ function listarCadeiras(ocupadas) {
 
     contagem = dadosLotacao[0]
 
+    const alerta = document.getElementById("contAlerta")
+    alerta.innerHTML = ""
     for (var i = 0; i < contagem; i++) {
-
         if (i < ocupadas.length) {
-
             poltronaMaluca.innerHTML +=
                 `
                 <div class="contPoltrona">
@@ -336,23 +336,22 @@ function listarCadeiras(ocupadas) {
 
                 </div>
                 `
-
             var showTermometro = document.getElementsByClassName('showTermometro')
             if (ocupadas[i].valor <= 35.5) {
                 showTermometro[i].innerHTML = '<img src="../IMG/termometro-roxo.png" class="termometro">'
-
+                AbrirAlerta(ocupadas[i].valor, "../IMG/termometro-roxo.png", ocupadas[i].nomePoltrona)
             } else if (ocupadas[i].valor >= 35.6 && ocupadas[i].valor <= 37.5) {
                 showTermometro[i].innerHTML = '<img src="../IMG/termometro-verde.png" class="termometro">'
 
             } else if (ocupadas[i].valor >= 37.6 && ocupadas[i].valor <= 38) {
                 showTermometro[i].innerHTML = '<img src="../IMG/termometro-amarelo.png" class="termometro">'
-
+                AbrirAlerta(ocupadas[i].valor, "../IMG/termometro-amarelo.png", ocupadas[i].nomePoltrona)
             } else if (ocupadas[i].valor >= 38.1 && ocupadas[i].valor <= 39.5) {
                 showTermometro[i].innerHTML = '<img src="../IMG/termometro-laranja.png" class="termometro">'
-
+                AbrirAlerta(ocupadas[i].valor, "../IMG/termometro-laranja.png", ocupadas[i].nomePoltrona)
             } else if (ocupadas[i].valor >= 39.6) {
                 showTermometro[i].innerHTML = '<img src="../IMG/termometro-vermelho.png" class="termometro">'
-
+                AbrirAlerta(ocupadas[i].valor, "../IMG/termometro-vermelho.png", ocupadas[i].nomePoltrona)
             }
 
 
@@ -421,4 +420,20 @@ function contagemPoltronas(dadosLotacao) {
 
     console.log('Poltronas em uso: ' + emUso)
 
+}
+function AbrirAlerta(temperatura, termometro, poltrona){
+    const alerta = document.getElementById("contAlerta")
+    alerta.innerHTML += `
+        <div class="divAlerta" onclick="fecharAlerta(${alerta.children.length})">
+            <img src="${termometro}">
+            <p> Paciente da ${poltrona} está com ${Number(temperatura).toFixed(1)}°C</p>
+            <button class="btnFecharAlerta">
+            <img src="../IMG/Vector.png" alt="" />
+            </button> 
+        </div>
+    `
+}
+function fecharAlerta(index){
+    const alerta = document.getElementById("contAlerta")
+    alerta.removeChild(alerta.children[index])
 }
