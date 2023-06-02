@@ -19,9 +19,13 @@ let carregarLinha = [{
     dataDiaria: '05/01',
     contagem: 0
 }]
+
 let contagem
+
 let dadosLotacao = []
+
 let dadosKpi = [0, 0]
+
 let poltronas
 
 window.load = pegarId()
@@ -47,7 +51,7 @@ setTimeout(() => {
     plotarGraficoLotacao(dadosLotacao)
     contagemPoltronas(dadosLotacao)
 
-}, 4000)
+}, 2000)
 
 // Atualizar gráficos
 let atualizar2 = setInterval(() => {
@@ -57,8 +61,7 @@ let atualizar2 = setInterval(() => {
     plotarGraficoLotacao(dadosLotacao)
     contagemPoltronas(dadosLotacao)
 
-}, 11000)
-
+}, 5000)
 
 // Atualizar gráficos
 let atualizar = setInterval(() => {
@@ -68,7 +71,7 @@ let atualizar = setInterval(() => {
     buscarLotacaoDiaria(idSessionSala)
     buscarCadeiras(idSessionSala)
 
-}, 11000)
+}, 5000)
 
 
 
@@ -314,7 +317,7 @@ function listarCadeiras(ocupadas) {
     const alerta = document.getElementById("contAlerta")
     alerta.innerHTML = ""
     for (var i = 0; i < contagem; i++) {
-        if (i < ocupadas.length) {
+        if (ocupadas[i].valor > 0) {
             poltronaMaluca.innerHTML +=
                 `
                 <div class="contPoltrona">

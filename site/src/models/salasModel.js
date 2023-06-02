@@ -38,7 +38,7 @@ function InfoSalas(idHosp) {
         join TipoSensor on fkTipoSensor = idTipo
         join Poltrona on fkPoltrona = idPoltrona
         where DATE(dataHora) = DATE(now()) and 
-        time(now()-200) < time(dataHora) and fkSala = S.idSala
+        time(now()-100) < time(dataHora) and fkSala = S.idSala
         and idTipo = 1
     ) as totalPoltonasUso,
     (
