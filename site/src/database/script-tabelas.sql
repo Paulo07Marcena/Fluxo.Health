@@ -38,7 +38,7 @@ create table trocaDeSenhas(
 	concluido tinyint,
     dataHora datetime,
     fkHosp int,
-    foreign key (fkHosp) references hospital(idHosp)
+    foreign key (fkHosp) references Hospital(idHosp)
 );
 
 
@@ -51,10 +51,11 @@ create table Sala(
 );
 
 insert into Sala
-values (null, 'Sala 1', 'Sala de Medicação', 1),
-	   (null, 'Sala 2', 'Sala de Inalação', 1),
-       (null, 'Sala 3', 'Sala de Medicação', 1);
-
+values (null, 'Medicação - S1', 'Sala de Medicação', 1),
+	   (null, 'Medicação - S2', 'Sala de medicação', 1),
+	   (null, 'Enfermaria', 'Sala de diagnósticos e medicação', 1),
+       (null, 'Pronto-socorro', 'Sala para atendimentos urgentes/emergenciais.', 1),
+       (null, 'Berçario', 'Sala para bebês recém nascidos', 1);
 
        
 create table Poltrona(
@@ -68,12 +69,19 @@ insert into Poltrona
 values (null, 'Poltrona 1', 1),
 	   (null, 'Poltrona 2', 1),
        (null, 'Poltrona 3', 1),
+       (null, 'Poltrona 4', 1),
+       
        (null, 'Poltrona 1', 2),
 	   (null, 'Poltrona 2', 2),
-       (null, 'Poltrona 3', 2),
+       
        (null, 'Poltrona 1', 3),
 	   (null, 'Poltrona 2', 3),
-       (null, 'Poltrona 3', 3);
+       
+       (null, 'Poltrona 1', 4),
+	   (null, 'Poltrona 2', 4),
+       
+       (null, 'Poltrona 1', 5),
+	   (null, 'Poltrona 2', 5);
        
 
        
@@ -99,65 +107,128 @@ create table Sensor(
 );
 
 insert into Sensor
-values (null, 'TCRT5000', 2, 1),
-	   (null, 'LM35', 1, 1),
-       (null, 'TCRT5000', 2, 2),
+values (null, 'LM35', 1, 1),
+	   (null, 'TCRT5000', 2, 1),
+       
 	   (null, 'LM35', 1, 2),
-       (null, 'TCRT5000', 2, 3),
+       (null, 'TCRT5000', 2, 2),
+       
 	   (null, 'LM35', 1, 3),
-       (null, 'TCRT5000', 2, 4),
+       (null, 'TCRT5000', 2, 3),
+       
 	   (null, 'LM35', 1, 4),
-       (null, 'TCRT5000', 2, 5),
+       (null, 'TCRT5000', 2, 4),
+       
 	   (null, 'LM35', 1, 5),
-       (null, 'TCRT5000', 2, 6),
+       (null, 'TCRT5000', 2, 5),
+       
 	   (null, 'LM35', 1, 6),
-       (null, 'TCRT5000', 2, 7),
+       (null, 'TCRT5000', 2, 6),
+       
 	   (null, 'LM35', 1, 7),
-       (null, 'TCRT5000', 2, 8),
+       (null, 'TCRT5000', 2, 7),
+       
 	   (null, 'LM35', 1, 8),
+       (null, 'TCRT5000', 2, 8),
+       
+	   (null, 'LM35', 1, 9),
        (null, 'TCRT5000', 2, 9),
-	   (null, 'LM35', 1, 9);
+       
+       (null, 'LM35', 1, 10),
+       (null, 'TCRT5000', 2, 10),
+       
+       (null, 'LM35', 1, 11),
+       (null, 'TCRT5000', 2, 11),
+       
+       (null, 'LM35', 1, 12),
+       (null, 'TCRT5000', 2, 12);
 
 
-
+clear
 create table Registro(
 	idRegistro int,
     dataHora datetime,
     valor decimal(4,2),
     fkSensor int,
     foreign key (fkSensor) references Sensor(idSensor),
-	primary key (idRegistro,fkSensor, dataHora)
+	primary key (idRegistro, fkSensor, dataHora)
 );
 
 insert into Registro (idRegistro, fkSensor, dataHora, valor)
 values (1, 1, now(), 38.0),
-	   (1, 2, now(), 0),
+	   (1, 2, now(), 1),
+       (2, 3, now(), 27.0),
+       (2, 4, now(), 1),
+       (3, 5, now(), 30.0),
+       (3, 6, now(), 1),
+       (4, 7, now(), 0.0),
+       (4, 8, now(), 0),
        
-       (2, 1, now(), 27.0),
-       (2, 2, now(), 1),
+       (5, 9, now(), 0),
+       (5, 10, now(), 0),
+       (6, 11, now(), 35),
+       (6, 12, now(), 1),
        
-       (3, 1, now(), 30.0),
-       (3, 2, now(), 1),
+       (7, 13, now(), 31),
+       (7, 14, now(), 1),
+       (8, 15, now(), 0),
+       (8, 16, now(), 0),
        
-       (4, 1, now(), 25),
-       (4, 2, now(), 0),
+       (9, 17, now(), 35),
+       (9, 18, now(), 1),
+       (10, 19, now(), 0),
+       (10, 20, now(), 0),
        
-       (5, 1, now(), 31),
-       (5, 2, now(), 0);
-       
-    
+       (11, 21, now(), 31),
+       (11, 22, now(), 1),
+       (12, 23, now(), 31),
+       (12, 24, now(), 1);
+ 
 
+
+-- INSERINDO DADOS NA SALA 1 (MEdicação - S1)
 insert into Registro (idRegistro, fkSensor, dataHora, valor)
 values (1, 1, now(), 38.0),
 	   (1, 2, now(), 1),
+       
        (2, 3, now(), 36.5),
        (2, 4, now(), 1),
+       
        (3, 5, now(), 41),
        (3, 6, now(), 1);
        
-insert into Registro (idRegistro, fkSensor, dataHora, valor)       
-values (4, 7, now(), 38.0),
-	   (4, 8, now(), 1);
+      
+       
+-- Inserindo dados em todas as salas
+insert into Registro (idRegistro, fkSensor, dataHora, valor)
+values (1, 1, now(), round((RAND() * 7 + 33), 1)),
+	   (1, 2, now(), 1),
+       (2, 3, now(), round((RAND() * 7 + 33), 1)),
+       (2, 4, now(), 1),
+       (3, 5, now(), round((RAND() * 7 + 33), 1)),
+       (3, 6, now(), 1),
+       
+       (5, 9, now(), 0),
+       (5, 10, now(), 0),
+       (6, 11, now(), round((RAND() * 7 + 33), 1)),
+       (6, 12, now(), 1),
+       
+       (7, 13, now(), round((RAND() * 7 + 33), 1)),
+       (7, 14, now(), 1),
+       (8, 15, now(), 0),
+       (8, 16, now(), 0),
+       
+       (9, 17, now(), round((RAND() * 7 + 33), 1)),
+       (9, 18, now(), 1),
+       (10, 19, now(), 0),
+       (10, 20, now(), 0),
+       
+       (11, 21, now(), round((RAND() * 7 + 33), 1)),
+       (11, 22, now(), 1),
+       (12, 23, now(), round((RAND() * 7 + 33), 1)),
+       (12, 24, now(), 1);
+       
+    
        
        
        

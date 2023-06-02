@@ -23,7 +23,7 @@ function cadeirasEmUso(idSala) {
         join Poltrona on fkPoltrona = idPoltrona
         join Sala on fkSala = idSala
             where idSala = ${idSala} and idTipo = 1
-            and valor > 0 and dataHora between now() - 200 and now();
+            and valor > 0 and dataHora between now() - 30 and now();
     `;
 
     return database.executar(instrucaoSql)
@@ -69,7 +69,7 @@ function buscarCadeiras(idSala){
         join TipoSensor on Sensor.fkTipoSensor = idTipo
         join Registro reg on fkSensor = idSensor
 		    where idSala = ${idSala} and idTipo = 1
-		    and dataHora between now() - 200 and now();
+		    and dataHora between now() - 30 and now();
     `;
 
     return database.executar(instrucaoSql)
