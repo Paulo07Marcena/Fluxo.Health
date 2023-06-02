@@ -144,7 +144,7 @@ values (null, 'LM35', 1, 1),
        (null, 'TCRT5000', 2, 12);
 
 
-
+clear
 create table Registro(
 	idRegistro int,
     dataHora datetime,
